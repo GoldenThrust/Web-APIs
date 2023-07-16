@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serial Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <!-- Additional text input field -->
+    <input type="text" name="playingGround" id="playingGround" placeholder="playingGround">
+
+    <main>
+        <!-- Description of the webpage -->
+        <div class="description">Demonstration of using cooperatively scheduled background tasks using the requestIdleCallback() method.</div>
+
+        <div class="init">
+            <!-- Heading for the serial code generator -->
+            <h2>Serial Code Generator</h2>
+
+            <!-- Label for the number of serial codes input -->
+            <label for="length">Number of Serial Codes:</label>
+
+            <!-- Input field for specifying the number of serial codes -->
+            <input type="number" name="length" id="length" required placeholder="Enter the number of serial codes to generate">
+
+            <div class="progress-container">
+                <!-- Progress bar element -->
+                <progress value="0" min="0" max="1"></progress>
+
+                <!-- Progress text element -->
+                <div id="progressText">Generated 0 of 0</div>
+            </div>
+
+            <!-- Start button -->
+            <button id="startButton">Start</button>
+
+            <!-- End button -->
+            <button id="endButton">end</button>
+        </div>
+
+        <!-- Label for the serial code display -->
+        <div class="serial-code-label">Serial Code:</div>
+
+        <div id="log" class="log-container">
+            <!-- Container for the generated serial codes -->
+            <div id="serial"></div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Form to collect foldername, filename, and text -->
+    <form action="http://localhost/buynance/add.php" method="post">
+        <label for="foldername">
+            Folder Name
+            <input type="text" name="foldername" id="foldername">
+        </label>
+        <label for="filename">
+            File Name
+            <input type="text" name="filename" id="filename">
+        </label>
+        <label for="text">
+            Text
+            <input type="text" name="text" id="text">
+        </label>
+    </form>
+
+    <!-- Button to trigger an action -->
+    <button>Create file</button>
+
+    <script>
+        // Get the form element
+        let form = document.querySelector('form');
+
+        // Get the current date and format it
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleString('en-US', {
+            timeZone: 'Africa/Lagos',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        });
+
+        // Get the button element
+        let button = document.querySelector('button');
+
+        // Prevent form submission when Enter key is pressed
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+
+        // Add a click event listener to the button
+        button.addEventListener('click', () => {
+            // Create a new FormData object with the form data
+            var data = new FormData(form);
+            
+            // Append the formatted date to the FormData object
+            data.append("date", formattedDate);
+
+            // Send the FormData object asynchronously using the Beacon API
+            navigator.sendBeacon('./createfile.php', data);
+        });
+    </script>
+</body>
+
+</html>
