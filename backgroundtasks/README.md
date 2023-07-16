@@ -4,7 +4,7 @@ The **Serial Code Generator** is a web application that demonstrates the use of 
 
 With this Serial Code Generator, you can easily generate a large number of unique codes for various purposes, such as voucher codes, activation keys, or promotional offers. The code generation process is optimized to run efficiently in the background, ensuring smooth performance even for generating a large quantity of codes.
 
-Try out the live example [here](https://example.com) to see the Cooperative Serial Code Generator in action!
+Try out the live example [here](https://background-task-api.netlify.app) to see the Cooperative Serial Code Generator in action!
 
 Please note that if you choose to generate a large number of serial codes, it may take some time to complete the processing. The application is designed to handle such scenarios while keeping the user interface interactive and responsive.
 
