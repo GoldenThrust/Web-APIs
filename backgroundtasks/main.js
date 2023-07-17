@@ -136,9 +136,10 @@ function stopProcess() {
         taskHandler = null;
     }
     lengthText.disabled = false;
-    currentTaskNumber = 0;
     start.disabled = false;
     Taskend = true;
+    serialCode = [];
+    currentTaskNumber = 0;
 }
 
 // Event listeners for the "Start" and "End" buttons
