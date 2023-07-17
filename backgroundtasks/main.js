@@ -136,6 +136,7 @@ function stopProcess() {
         taskHandler = null;
     }
     lengthText.disabled = false;
+    currentTaskNumber = 0;
     start.disabled = false;
     Taskend = true;
 }
