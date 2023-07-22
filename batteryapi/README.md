@@ -38,14 +38,9 @@ Battery Usage Tracker is an application that allows users to monitor and track t
 ## Compatibility
 
 Battery Usage Tracker is compatible with modern web browsers and devices that support the Web Battery API.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Author
 
-Battery Usage Tracker was created by [Your Name](https://github.com/).
+Battery Usage Tracker was created by [Adeniji Olajide](https://github.com/GoldenThrust).
 
 Feel free to contribute to this project by submitting pull requests or reporting issues.
 
