@@ -116,7 +116,7 @@ function drawBattery() {
     else if (batteryLevel < 30)
     {
         color = "red";
-        navigator.vibrate([500,200,500,200,500])
+        navigator.vibrate([500,200,500,200,500]);
     }
     else
         color = "hsl(" + 1 * batteryLevel + ", 100%, 50%)";
@@ -240,6 +240,9 @@ function drawBatteryUsageLineChart(estimatedTime) {
             ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
             ctx.lineTo(cX - (canvasDepth / 160), curY);
         } else if (i % 5 == 0) {
+            ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
+            ctx.lineTo(cX - (canvasDepth / 160), curY);
+        } else {
             ctx.lineTo(cX - (canvasDepth / 200), curY);
         }
         ctx.stroke();
