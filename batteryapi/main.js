@@ -35,6 +35,13 @@ let batteryData = {
     level: [0]
 };
 
+function averagebatteryTime(arr)
+{
+    let sum = arr.reduce((accumulator, currentValue)=>{
+        return accumulator + currentValue
+    })
+    return sum/arr.length;
+}
 // Theme variable to track the current theme (white or black)
 let theme = "white";
 
@@ -192,6 +199,14 @@ function drawBattery() {
 
     // Draw the battery usage line chart
     drawBatteryUsageLineChart(batteryTime);
+
+    fontSize = (canvasDepth) / 100;
+    ctx.beginPath();
+    ctx.fillStyle = theme;
+    ctx.font = fontSize + "px cursive";
+    const avgtimeWidth = ctx.measureText("avg time - " + parseInt(averagebatteryTime(batteryData.time)) + "min").width;
+    ctx.fillText("avg time - " + parseInt(averagebatteryTime(batteryData.time)) + "min", halfCanvasWidth - avgtimeWidth / 2, halfCanvasHeight - calculatePercentage(canvasDepth, 5))
+    ctx.fill();
 }
 
 
@@ -427,3 +442,5 @@ document.querySelector("#yes").addEventListener("click", () => {
 document.querySelector("#no").addEventListener("click", () => {
     section.style.display = "none";
 });
+
+console.log();
