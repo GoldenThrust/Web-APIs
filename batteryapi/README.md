@@ -2,6 +2,7 @@
 
 Battery Usage Tracker is an application that allows users to monitor and track their device's battery usage. It provides valuable information about battery levels, charging and discharging times, as well as a graphical representation of battery statistics over time.
 
+Try out the live example [Battery Usage Tracker](https://web-battery-api.netlify.app) to see the Battery Usage Tracker in action!
 ## Features
 
 - **Real-time Battery Monitoring:** Get live updates on your device's current battery level and charging status.
