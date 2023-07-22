@@ -236,11 +236,10 @@ function drawBatteryUsageLineChart(estimatedTime) {
         if (i % 2 == 0 && Math.max(...batteryData.time) < 10) {
             ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
             ctx.lineTo(cX - (canvasDepth / 160), curY);
-        } else if (i % 5 == 0) {
+        } else if (i % 5 == 0 && Math.max(...batteryData.time) > 10) {
             ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
             ctx.lineTo(cX - (canvasDepth / 160), curY);
-        }
-        else {
+        } else {
             ctx.lineTo(cX - (canvasDepth / 200), curY);
         }
         ctx.stroke();
