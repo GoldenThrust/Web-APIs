@@ -440,6 +440,7 @@ document.querySelector("#yes").addEventListener("click", () => {
     localStorage.setItem("graphTime", batteryData.time);
     localStorage.setItem("graphLevel", batteryData.level);
     calculateBattery();
+    section.style.display = "none";
 })
 document.querySelector("#no").addEventListener("click", () => {
     section.style.display = "none";
