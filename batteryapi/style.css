@@ -1,0 +1,95 @@
+/* Global CSS reset */
+* {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* CSS variables */
+:root {
+    --theme: white; /* Define a CSS variable '--theme' with the default value 'white' */
+}
+
+/* Styles for heading element */
+h1 {
+    color: var(--theme); /* Set the color of the heading using the '--theme' CSS variable */
+    text-align: center;
+}
+
+/* Body background color */
+body {
+    background-color: black;
+}
+
+/* Styles for the clear prompt button */
+#clearPrompt {
+    display: block;
+    margin: 2% auto;
+    color: var(--theme); /* Set the text color using the '--theme' CSS variable */
+    background-color: red;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+/* Canvas styles */
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    box-sizing: border-box;
+}
+
+/* Styles for the confirmation dialog section */
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    width: 80%;
+    text-align: center;
+    color: white;
+    transition: all 1s ease-in-out;
+    display: none; /* Initially hide the section */
+}
+
+/* Styles for the text elements inside the confirmation dialog section */
+section div:first-child {
+    margin-top: 10%;
+    font-size: 2rem;
+}
+
+/* Styles for the buttons inside the confirmation dialog section */
+section div:last-child {
+    display: flex;
+    justify-content: center;
+    margin: 5rem 0;
+    gap: 5rem;
+}
+
+/* Styles for the 'Yes' and 'No' buttons */
+#yes, #no {
+    font-size: larger;
+    width: 6rem;
+    height: 3rem;
+    color: aliceblue;
+}
+
+/* Styles for the 'Yes' button */
+#yes {
+    background-color: rgb(255, 0, 0);
+}
+
+/* Styles for the 'No' button */
+#no {
+    background-color: rgb(0, 255, 72);
+}
+
+/* Cursor style for buttons */
+button {
+    cursor: pointer;
+}
+

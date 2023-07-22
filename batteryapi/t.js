@@ -3,10 +3,10 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 // Initialize variables
-let isCharging = false;
+let charging = false;
 let chargeAnimation = null;
-let batteryLevel = 100;
-let batteryTime = "- cannot check battery time on your device";
+let bar = 100;
+let time = "- cannot check battery time on your device";
 
 // Set the canvas width and height based on the device pixel ratio for better resolution
 if (devicePixelRatio) {
@@ -29,24 +29,24 @@ let halfCanvasWidth = canvas.width / 2;
 let halfCanvasHeight = canvas.height / 2;
 let canvasDepth = canvas.width + canvas.height;
 
-// Battery Data object to store battery information for the line chart
-let batteryData = {
+// Data object to store battery information for the line chart
+let data = {
     time: [0],
-    level: [0]
+    bar: [0]
 };
 
 // Theme variable to track the current theme (white or black)
 let theme = "white";
 
-// Check if there is saved Battery Data in the local storage for the graph and update the batteryData object
-if (localStorage.getItem("graphTime") && localStorage.getItem("graphLevel")) {
-    let tmpTime = localStorage.getItem("graphTime").split(",");
-    let tmpLevel = localStorage.getItem("graphLevel").split(",");
-    batteryData.time = [];
-    batteryData.level = [];
-    for (let i = 0; i < tmpTime.length; i++) {
-        batteryData.time.push(Number(tmpTime[i]));
-        batteryData.level.push(Number(tmpLevel[i]));
+// Check if there is saved data in the local storage for the graph and update the data object
+if (localStorage.getItem("graphTime") && localStorage.getItem("graphBar")) {
+    let tmpT = localStorage.getItem("graphTime").split(",");
+    let tmpB = localStorage.getItem("graphBar").split(",");
+    data.time = [];
+    data.bar = [];
+    for (let i = 0; i < tmpT.length; i++) {
+        data.time.push(Number(tmpT[i]));
+        data.bar.push(Number(tmpB[i]));
     }
 }
 
@@ -60,63 +60,63 @@ addEventListener("resize", () => {
         canvas.height = innerHeight * devicePixelRatio;
     }
     // Recalculate and redraw the battery graphic
-    calculateBattery();
+    calc();
 });
 
-// Call the calculateBattery function to initialize battery data
-calculateBattery();
+// Call the calc function to initialize battery data
+calc();
 
 // Function to calculate a percentage of a number
-function calculatePercentage(num, percent) {
+function numPercent(num, percent) {
     return ((percent / 100) * num);
 }
 
 // Event listener for click event to toggle between white and black themes
-let isLightTheme = false;
-const rootStyle = document.documentElement.style;
+let light = false;
+const rootstyle = document.documentElement.style;
 canvas.addEventListener("click", () => {
-    if (isLightTheme) {
+    if (light) {
         theme = "black";
         document.body.style.backgroundColor = "white";
         backgroundColor = "white";
-        rootStyle.setProperty("--theme", theme);
+        rootstyle.setProperty("--theme", theme);
     } else {
         theme = "white";
-        document.body.style.backgroundColor = "black";
-        backgroundColor = "black";
-        rootStyle.setProperty("--theme", theme);
+        document.body.style = "#1f1f1f";
+        backgroundColor = "#1f1f1f";
+        rootstyle.setProperty("--theme", theme);
     }
     // Redraw the battery graphic with the new theme
-    drawBattery();
-    isLightTheme = !isLightTheme;
+    batteryGraphic();
+    light = !light;
 });
 
 // Function to draw a stroke with the given stroke width, color, and position percentage
-function drawStroke(strokeWidth, color, posPercent) {
-    const sideStrokeRadius = calculatePercentage(canvasDepth, posPercent);
+function stroke(strokeWidth, color, posPercent) {
+    const sideStrokeRadius = numPercent(canvasDepth, posPercent);
 
     ctx.beginPath();
     ctx.lineWidth = strokeWidth;
     ctx.strokeStyle = color;
-    ctx.arc(halfCanvasWidth, halfCanvasHeight - calculatePercentage(canvasDepth, 2), sideStrokeRadius, 0, Math.PI * 2);
+    ctx.arc(halfCanvasWidth, halfCanvasHeight - numPercent(canvasDepth, 2), sideStrokeRadius, 0, Math.PI * 2);
     ctx.stroke();
 }
 
 // Function to draw the battery graphic
-function drawBattery() {
-    // Get the current battery level and charging status
-    // let batteryLevel = batteryLevel;
-    // let isCharging = isCharging;
-    let estimatedTime = "Estimated time remaining " + batteryTime;
+function batteryGraphic() {
+    // Get the current battery bar value and charging status
+    let batteryBar = bar;
+    let batteryCharging = charging;
+    let estimatedTime = "Estimated time remaining " + time;
 
     // Determine the color based on battery level and charging status
     let color;
-    if (isCharging || batteryLevel > 70)
+    if (batteryCharging || batteryBar > 70)
         color = "springgreen";
-    else if (batteryLevel < 30)
+    else if (batteryBar < 30)
         color = "red";
     else
-        color = "hsl(" + 1 * batteryLevel + ", 100%, 50%)";
+        color = "hsl(" + 1 * batteryBar + ", 100%, 50%)";
 
     // Calculate some sizes for drawing elements
     let width = (canvasDepth) / 100;
@@ -125,22 +125,22 @@ function drawBattery() {
     // Clear the canvas and draw the battery shape
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineCap = 'butt';
-    drawStroke(width + 5, color, 7);
-    drawStroke(width, backgroundColor, 7);
+    stroke(width + 5, color, 7);
+    stroke(width, backgroundColor, 7);
     ctx.beginPath();
     ctx.lineWidth = width + 5;
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
     ctx.font = fontSize + "px sans-serif";
     const startAngle = -Math.PI / 2;
-    const endAngle = (Math.PI / 180) * ((batteryLevel / 100) * 360) + startAngle;
-    ctx.arc(halfCanvasWidth, halfCanvasHeight - calculatePercentage(canvasDepth, 2), calculatePercentage(canvasDepth, 7), startAngle, endAngle);
+    const endAngle = (Math.PI / 180) * ((batteryBar / 100) * 360) + startAngle;
+    ctx.arc(halfCanvasWidth, halfCanvasHeight - numPercent(canvasDepth, 2), numPercent(canvasDepth, 7), startAngle, endAngle);
 
     // Draw the battery percentage text
-    const textWidth = ctx.measureText(batteryLevel + "%").width;
+    const textWidth = ctx.measureText(batteryBar + "%").width;
     const textX = halfCanvasWidth - textWidth / 2;
-    const textY = halfCanvasHeight + calculatePercentage(canvasDepth, -0.2);
-    ctx.fillText(batteryLevel + "%", textX, textY);
+    const textY = halfCanvasHeight + numPercent(canvasDepth, -0.2);
+    ctx.fillText(batteryBar + "%", textX, textY);
     ctx.stroke();
 
     // Cancel the previous chargeAnimation if running
@@ -150,8 +150,8 @@ function drawBattery() {
 
     // Function to animate the charging effect
     let offset = 0;
-    function animateCharging() {
-        ctx.clearRect(halfCanvasWidth - calculatePercentage(canvasDepth, 1), halfCanvasHeight - calculatePercentage(canvasDepth, -0.5), calculatePercentage(canvasDepth, 1.5), calculatePercentage(canvasDepth, 3));
+    function charge() {
+        ctx.clearRect(halfCanvasWidth - numPercent(canvasDepth, 1), halfCanvasHeight - numPercent(canvasDepth, -0.5), numPercent(canvasDepth, 1.5), numPercent(canvasDepth, 3));
         offset++;
         if (offset > 10) {
             offset = 0;
@@ -163,22 +163,22 @@ function drawBattery() {
 
         ctx.strokeStyle = "springgreen";
         ctx.beginPath();
-        ctx.moveTo(halfCanvasWidth, halfCanvasHeight + calculatePercentage(canvasDepth, 1))
+        ctx.moveTo(halfCanvasWidth, halfCanvasHeight + numPercent(canvasDepth, 1))
         ctx.lineWidth = (canvasDepth) / 280;
         ctx.lineCap = "round";
         ctx.shadowColor = "lightblue";
         ctx.shadowBlur = 4;
-        ctx.lineTo(halfCanvasWidth + calculatePercentage(canvasDepth, -0.5), halfCanvasHeight + calculatePercentage(canvasDepth, 2));
-        ctx.lineTo(halfCanvasWidth + calculatePercentage(canvasDepth, 0.005), halfCanvasHeight + calculatePercentage(canvasDepth, 2));
-        ctx.lineTo(halfCanvasWidth + calculatePercentage(canvasDepth, -0.5), halfCanvasHeight + calculatePercentage(canvasDepth, 3));
+        ctx.lineTo(halfCanvasWidth + numPercent(canvasDepth, -0.5), halfCanvasHeight + numPercent(canvasDepth, 2));
+        ctx.lineTo(halfCanvasWidth + numPercent(canvasDepth, 0.005), halfCanvasHeight + numPercent(canvasDepth, 2));
+        ctx.lineTo(halfCanvasWidth + numPercent(canvasDepth, -0.5), halfCanvasHeight + numPercent(canvasDepth, 3));
         ctx.stroke();
-        chargeAnimation = requestAnimationFrame(animateCharging);
+        chargeAnimation = requestAnimationFrame(charge);
         ctx.restore();
     }
 
     // Start the charge animation if the battery is charging
-    if (isCharging) {
-        chargeAnimation = requestAnimationFrame(animateCharging);
+    if (batteryCharging) {
+        chargeAnimation = requestAnimationFrame(charge);
     }
 
     // Draw the estimated time text
@@ -187,25 +187,24 @@ function drawBattery() {
     ctx.fillStyle = theme;
     ctx.font = fontSize + "px cursive";
     const timeWidth = ctx.measureText(estimatedTime).width;
-    ctx.fillText(estimatedTime, halfCanvasWidth - timeWidth / 2, halfCanvasHeight + calculatePercentage(canvasDepth, 8))
+    ctx.fillText(estimatedTime, halfCanvasWidth - timeWidth / 2, halfCanvasHeight + numPercent(canvasDepth, 8))
     ctx.fill();
 
     // Draw the battery usage line chart
-    drawBatteryUsageLineChart(batteryTime);
+    batteryUsageLineChart(time);
 }
 
-
 // Function to draw the battery usage line chart
-function drawBatteryUsageLineChart(estimatedTime) {
+function batteryUsageLineChart(estimatedTime) {
     // Set the styles for the line chart
     ctx.lineWidth = canvasDepth / 700;
     ctx.strokeStyle = theme;
 
     // Define the coordinates for the line chart
-    let cX = halfCanvasWidth - calculatePercentage(canvasDepth, 15);
-    let cHeight = halfCanvasHeight + calculatePercentage(canvasDepth, 14);
-    let cY = halfCanvasHeight + calculatePercentage(canvasDepth, 9.3);
-    let cWidth = halfCanvasWidth + calculatePercentage(canvasDepth, 15);
+    let cX = halfCanvasWidth - numPercent(canvasDepth, 15);
+    let cHeight = halfCanvasHeight + numPercent(canvasDepth, 14);
+    let cY = halfCanvasHeight + numPercent(canvasDepth, 9.3);
+    let cWidth = halfCanvasWidth + numPercent(canvasDepth, 15);
 
     // Draw the Y-axis
     ctx.beginPath();
@@ -220,13 +219,12 @@ function drawBatteryUsageLineChart(estimatedTime) {
     // Calculate the increment and plot Y-axis labels
     let yDif = cHeight - cY;
     let curY = cY + yDif;
-
-    let cYrangeInc = (cHeight + yDif - curY) / Math.max(...batteryData.time);
-    let Ydata = Array(batteryData.time.length).fill(null);
-    let Xdata = Array(batteryData.level.length).fill(null);
-    for (var i = Math.min(...batteryData.time); i <= Math.max(...batteryData.time) && batteryData.time.length > 1; i++) {
-        for (let j = 1; j < batteryData.time.length; j++) {
-            if (i == batteryData.time[j]) {
+    let cYrangeInc = (cHeight + yDif - curY) / Math.max(...data.time);
+    let Ydata = Array(data.time.length).fill(null);
+    let Xdata = Array(data.bar.length).fill(null);
+    for (var i = Math.min(...data.time); i <= Math.max(...data.time) && data.time.length > 1; i++) {
+        for (let j = 1; j < data.time.length; j++) {
+            if (i == data.time[j]) {
                 Ydata[j] = curY;
             }
         }
@@ -260,8 +258,8 @@ function drawBatteryUsageLineChart(estimatedTime) {
     let curX = cX;
     let cXrangeInc = (cWidth - cX) / 100;
     for (var i = 0; i <= 100; i++) {
-        for (let j = 1; j < batteryData.level.length; j++) {
-            if (i == batteryData.level[j]) {
+        for (let j = 1; j < data.bar.length; j++) {
+            if (i == data.bar[j]) {
                 Xdata[j] = curX;
             }
         }
@@ -284,14 +282,14 @@ function drawBatteryUsageLineChart(estimatedTime) {
     // Plot the data points on the line chart
     ctx.beginPath();
     ctx.moveTo(Xdata[1], Ydata[1])
-    for (let i = 1; i < batteryData.time.length; i++) {
+    for (let i = 1; i < data.time.length; i++) {
             ctx.lineTo(Xdata[i], Ydata[i]);
     }
-    if (batteryData.level[i] > batteryData.level[1])
+    if (data.bar[i] > data.bar[1])
         ctx.lineTo(Xdata[i], Ydata[i]);
         
     ctx.stroke();
-    for (let i = 1; i < batteryData.time.length; i++) {
+    for (let i = 1; i < data.time.length; i++) {
         ctx.beginPath();
         ctx.arc(Xdata[i], Ydata[i], 2, 0, Math.PI * 2)
         ctx.fill();
@@ -299,34 +297,34 @@ function drawBatteryUsageLineChart(estimatedTime) {
 }
 
 function insertionSort() {
-    const levelLen = batteryData.level.length;
-
-    for (let i = 1; i < levelLen; i++) {
-        const currentLevel = batteryData.level[i];
-        const currentTime = batteryData.time[i];
-        let j = i - 1;
-
-        while (j >= 0 && batteryData.level[j] > currentLevel) {
-            batteryData.level[j + 1] = batteryData.level[j];
-            batteryData.time[j + 1] = batteryData.time[j];
-            j--;
-        }
-
-        batteryData.level[j + 1] = currentLevel;
-        batteryData.time[j + 1] = currentTime;
+    const barLen = data.bar.length;
+  
+    for (let i = 1; i < barLen; i++) {
+      const currentBar = data.bar[i];
+      const currentTime = data.time[i];
+      let j = i - 1;
+  
+      while (j >= 0 && data.bar[j] > currentBar) {
+        data.bar[j + 1] = data.bar[j];
+        data.time[j + 1] = data.time[j];
+        j--;
+      }
+  
+      data.bar[j + 1] = currentBar;
+      data.time[j + 1] = currentTime;
     }
 }
 
 // Function to calculate and update battery data
-function calculateBattery() {
+function calc() {
     // Use the Web Battery API to get battery information
     navigator.getBattery().then((battery) => {
         // Function to update all battery information
         function updateAllBatteryInfo() {
-            updateChargingInfo();
+            updateChargeInfo();
             updateLevelInfo();
-            if (isCharging) updateChargingTimeInfo();
-            else updateDischargingTimeInfo();
+            if (charging) updateChargingInfo();
+            else updateDischargingInfo();
         }
         // Call the function to update initial battery data
         updateAllBatteryInfo();
@@ -334,92 +332,91 @@ function calculateBattery() {
         // Event listeners to update battery information on changes
 
         battery.addEventListener("chargingchange", () => {
-            updateChargingInfo();
+            updateChargeInfo();
         });
-        function updateChargingInfo() {
-            isCharging = battery.charging;
-            drawBattery();
+        function updateChargeInfo() {
+            charging = battery.charging;
+            batteryGraphic();
         }
 
         battery.addEventListener("levelchange", () => {
             updateLevelInfo();
         });
         function updateLevelInfo() {
-            batteryLevel = parseInt((battery.level) * 100);
-            drawBattery();
+            bar = parseInt((battery.level) * 100);
+            batteryGraphic();
         }
 
         battery.addEventListener("chargingtimechange", () => {
-            updateChargingTimeInfo();
+            updateChargingInfo();
         });
-        function updateChargingTimeInfo() {
+        function updateChargingInfo() {
             if (battery.chargingTime !== Infinity) {
-                let timeInc = battery.chargingTime / batteryLevel;
+                let timeInc = battery.chargingTime / bar;
                 let minInc = timeInc / 60;
 
-                if (batteryData.level.includes(batteryLevel)) {
-                    batteryData.time[batteryData.level.indexOf(batteryLevel)] = parseInt(minInc);
+                if (data.bar.includes(bar)) {
+                    data.time[data.bar.indexOf(bar)] = parseInt(minInc);
                 } else {
-                    batteryData.time.push(parseInt(minInc));
-                    batteryData.level.push(batteryLevel);
+                    data.time.push(parseInt(minInc));
+                    data.bar.push(bar);
                 }
                 insertionSort();
 
-                localStorage.setItem("graphTime", batteryData.time);
-                localStorage.setItem("graphLevel", batteryData.level);
+                localStorage.setItem("graphTime", data.time);
+                localStorage.setItem("graphBar", data.bar);
 
                 let min = battery.chargingTime / 60;
                 let hr = min / 60
                 let remMin = parseInt(min - parseInt(hr) * 60);
                 let remHr = parseInt(hr);
-                batteryTime = remHr + "hr " + remMin + "min";
-                drawBattery();
-            } else batteryTime = "- cannot check battery charging time on your device";
+                time = remHr + "hr " + remMin + "min";
+                batteryGraphic();
+            } else time = "- cannot check battery charging time on your device";
         }
 
         battery.addEventListener("dischargingtimechange", () => {
-            updateDischargingTimeInfo();
+            updateDischargingInfo();
         });
 
-        function updateDischargingTimeInfo() {
+        function updateDischargingInfo() {
             if (battery.dischargingTime !== Infinity) {
-                let timeInc = battery.dischargingTime / batteryLevel;
+                let timeInc = battery.dischargingTime / bar;
                 let minInc = timeInc / 60;
 
-                if (batteryData.level.includes(batteryLevel)) {
-                    batteryData.time[batteryData.level.indexOf(batteryLevel)] = parseInt(minInc);
+                if (data.bar.includes(bar)) {
+                    data.time[data.bar.indexOf(bar)] = parseInt(minInc);
                 } else {
-                    batteryData.time.push(parseInt(minInc));
-                    batteryData.level.push(batteryLevel);
+                    data.time.push(parseInt(minInc));
+                    data.bar.push(bar);
                 }
 
                 insertionSort();
 
-                localStorage.setItem("graphTime", batteryData.time);
-                localStorage.setItem("graphLevel", batteryData.level);
+                localStorage.setItem("graphTime", data.time);
+                localStorage.setItem("graphBar", data.bar);
                 let min = battery.dischargingTime / 60;
                 let hr = min / 60
                 let remMin = parseInt(min - parseInt(hr) * 60);
                 let remHr = parseInt(hr);
-                batteryTime = remHr + "hr " + remMin + "min";
-                drawBattery();
-            } else batteryTime = "- cannot check battery discharging time on your device";
+                time = remHr + "hr " + remMin + "min";
+                batteryGraphic();
+            } else time = "- cannot check battery discharging time on your device";
         }
     });
 }
 
-// Clear prompt
 let section = document.querySelector("section");
 
 document.querySelector("#clearPrompt").addEventListener("click", () => {
     section.style.display = "block";
 })
 document.querySelector("#yes").addEventListener("click", () => {
-    batteryData.time = [0];
-    batteryData.level = [0];
-    localStorage.setItem("graphTime", batteryData.time);
-    localStorage.setItem("graphLevel", batteryData.level);
-    calculateBattery();
+    data.time = [0];
+    data.bar = [0];
+    localStorage.setItem("graphTime", data.time);
+    localStorage.setItem("graphBar", data.bar);
+    calc();
 })
 document.querySelector("#no").addEventListener("click", () => {
     section.style.display = "none";
