@@ -200,7 +200,7 @@ function drawBattery() {
     // Draw the battery usage line chart
     drawBatteryUsageLineChart(batteryTime);
 
-    fontSize = (canvasDepth) / 100;
+    // Draw the average time usage
     ctx.beginPath();
     ctx.fillStyle = theme;
     ctx.font = fontSize + "px cursive";
@@ -415,6 +415,7 @@ function calculateBattery() {
 
                 localStorage.setItem("graphTime", batteryData.time);
                 localStorage.setItem("graphLevel", batteryData.level);
+                
                 let min = battery.dischargingTime / 60;
                 let hr = min / 60
                 let remMin = parseInt(min - parseInt(hr) * 60);
