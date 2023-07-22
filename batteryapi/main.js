@@ -114,7 +114,10 @@ function drawBattery() {
     if (isCharging || batteryLevel > 70)
         color = "springgreen";
     else if (batteryLevel < 30)
+    {
         color = "red";
+        navigator.vibrate([500,200,500,200,500])
+    }
     else
         color = "hsl(" + 1 * batteryLevel + ", 100%, 50%)";
 
@@ -233,10 +236,10 @@ function drawBatteryUsageLineChart(estimatedTime) {
         ctx.beginPath();
         ctx.moveTo(cX, curY);
         ctx.lineWidth = canvasDepth / 2000;
-        if (i % 2 == 0) {
+        if (i % 2 == 0 && Math.max(...batteryData.time) < 10) {
             ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
             ctx.lineTo(cX - (canvasDepth / 160), curY);
-        } else {
+        } else if (i % 5 == 0) {
             ctx.lineTo(cX - (canvasDepth / 200), curY);
         }
         ctx.stroke();
