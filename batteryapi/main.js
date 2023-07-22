@@ -233,13 +233,14 @@ function drawBatteryUsageLineChart(estimatedTime) {
         ctx.beginPath();
         ctx.moveTo(cX, curY);
         ctx.lineWidth = canvasDepth / 2000;
-        if (i % 2 == 0 && Math.max(...batteryData.time) < 10) {
+        if (i % 2 == 0 && Math.max(...batteryData.time) > 10) {
             ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
             ctx.lineTo(cX - (canvasDepth / 160), curY);
         } else if (i % 5 == 0) {
             ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
             ctx.lineTo(cX - (canvasDepth / 160), curY);
-        } else {
+        }
+        else {
             ctx.lineTo(cX - (canvasDepth / 200), curY);
         }
         ctx.stroke();
@@ -288,11 +289,11 @@ function drawBatteryUsageLineChart(estimatedTime) {
     ctx.beginPath();
     ctx.moveTo(Xdata[1], Ydata[1])
     for (let i = 1; i < batteryData.time.length; i++) {
-            ctx.lineTo(Xdata[i], Ydata[i]);
+        ctx.lineTo(Xdata[i], Ydata[i]);
     }
     if (batteryData.level[i] > batteryData.level[1])
         ctx.lineTo(Xdata[i], Ydata[i]);
-        
+
     ctx.stroke();
     for (let i = 1; i < batteryData.time.length; i++) {
         ctx.beginPath();
