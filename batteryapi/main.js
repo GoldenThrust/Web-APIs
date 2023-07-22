@@ -233,7 +233,7 @@ function drawBatteryUsageLineChart(estimatedTime) {
         ctx.beginPath();
         ctx.moveTo(cX, curY);
         ctx.lineWidth = canvasDepth / 2000;
-        if (i % 2 == 0 && Math.max(...batteryData.time) > 10) {
+        if (i % 2 == 0 && Math.max(...batteryData.time) < 10) {
             ctx.fillText(i, cX - (canvasDepth / 100), curY + (canvasDepth / 450))
             ctx.lineTo(cX - (canvasDepth / 160), curY);
         } else if (i % 5 == 0) {
