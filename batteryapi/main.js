@@ -114,10 +114,7 @@ function drawBattery() {
     if (isCharging || batteryLevel > 70)
         color = "springgreen";
     else if (batteryLevel < 30)
-    {
         color = "red";
-        navigator.vibrate([500,200,500,200,500]);
-    }
     else
         color = "hsl(" + 1 * batteryLevel + ", 100%, 50%)";
 
