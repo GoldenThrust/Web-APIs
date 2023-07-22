@@ -48,12 +48,12 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: black;
+    background-color: rgb(33, 33, 33);
     width: 80%;
     text-align: center;
     color: white;
-    transition: all 1s ease-in-out;
     display: none; /* Initially hide the section */
+    box-shadow: 0 0 5px black;
 }
 
 /* Styles for the text elements inside the confirmation dialog section */
