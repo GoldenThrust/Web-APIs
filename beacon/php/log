@@ -1,0 +1,156 @@
+[
+    {
+        "timestamp": "2023-08-19T18:58:26.408Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+        "mobile": false,
+        "platform": "Windows",
+        "url": "http://localhost:62308/beacon/",
+        "brands": [
+            {
+                "brand": "Not/A)Brand",
+                "version": "99"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "115"
+            },
+            {
+                "brand": "Chromium",
+                "version": "115"
+            }
+        ]
+    },
+    {
+        "timestamp": "2023-08-19T18:58:28.832Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+        "mobile": false,
+        "platform": "Windows",
+        "url": "http://localhost:62308/beacon/",
+        "brands": [
+            {
+                "brand": "Not/A)Brand",
+                "version": "99"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "115"
+            },
+            {
+                "brand": "Chromium",
+                "version": "115"
+            }
+        ]
+    },
+    {
+        "timestamp": "2023-08-19T18:58:33.095Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+        "mobile": false,
+        "platform": "Windows",
+        "url": "http://localhost:62308/beacon/",
+        "brands": [
+            {
+                "brand": "Not/A)Brand",
+                "version": "99"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "115"
+            },
+            {
+                "brand": "Chromium",
+                "version": "115"
+            }
+        ]
+    },
+    {
+        "timestamp": "2023-08-19T18:58:46.480Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+        "mobile": false,
+        "platform": "Windows",
+        "url": "http://localhost:62308/beacon/",
+        "brands": [
+            {
+                "brand": "Not/A)Brand",
+                "version": "99"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "115"
+            },
+            {
+                "brand": "Chromium",
+                "version": "115"
+            }
+        ]
+    },
+    {
+        "timestamp": "2023-08-19T18:59:07.073Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203",
+        "mobile": false,
+        "platform": "Windows",
+        "url": "http://localhost:62308/beacon/",
+        "brands": [
+            {
+                "brand": "Not/A)Brand",
+                "version": "99"
+            },
+            {
+                "brand": "Microsoft Edge",
+                "version": "115"
+            },
+            {
+                "brand": "Chromium",
+                "version": "115"
+            }
+        ]
+    },
+    {
+        "timestamp": "2023-08-19T18:59:09.578Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203",
+        "mobile": false,
+        "platform": "Windows",
+        "url": "http://localhost:62308/beacon/",
+        "brands": [
+            {
+                "brand": "Not/A)Brand",
+                "version": "99"
+            },
+            {
+                "brand": "Microsoft Edge",
+                "version": "115"
+            },
+            {
+                "brand": "Chromium",
+                "version": "115"
+            }
+        ]
+    },
+    {
+        "timestamp": "2023-08-19T18:59:09.648Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203",
+        "mobile": false,
+        "platform": "Windows",
+        "url": "http://localhost:62308/beacon/",
+        "brands": [
+            {
+                "brand": "Not/A)Brand",
+                "version": "99"
+            },
+            {
+                "brand": "Microsoft Edge",
+                "version": "115"
+            },
+            {
+                "brand": "Chromium",
+                "version": "115"
+            }
+        ]
+    }
+]
