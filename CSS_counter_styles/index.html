@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Counter Style API</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <h1>CSS Counter Style API</h1>
+    <section>
+        <ul>
+            <li>
+                <h2>Web Browser API</h2>
+            </li>
+            <ul>
+                <li><a href="https://github.com/GoldenThrust/Web-Browser-APIs/tree/main/backgroundtasks" target="_blank" rel="noopener noreferrer">Background Tasks API</a></li>
+                <li><a href="https://github.com/GoldenThrust/Web-Browser-APIs/tree/main/batteryapi" target="_blank" rel="noopener noreferrer">Battery API</a></li>
+                <li><a href="https://github.com/GoldenThrust/Web-Browser-APIs/tree/main/beacon" target="_blank" rel="noopener noreferrer">Beacon API</a></li>
+                <li><a href="https://github.com/GoldenThrust/Web-Browser-APIs/tree/main/broadcast_channel" target="_blank" rel="noopener noreferrer">Broadcast Channel API</a></li>
+                <li><a href="https://github.com/GoldenThrust/Web-Browser-APIs/tree/main/CSS_counter_styles" target="_blank" rel="noopener noreferrer">CSS_counter_styles API</a></li>
+            </ul>
+        </ul>
+
+        <h2>Edit List Style</h2>
+        <form action="" method="post">
+            <select name="list_style" id="list_style">
+                <optgroup label="Default">
+                    <option value="armenian">Armenian</option>
+                    <option value="circle">Circle</option>
+                    <option value="decimal">Decimal</option>
+                    <option value="decimal-leading-zero">Decimal Leading Zero</option>
+                    <option value="disc">Disc</option>
+                    <option value="georgian">Georgian</option>
+                    <option value="inside">Inside</option>
+                    <option value="lower-alpha">Lower Alpha</option>
+                    <option value="lower-greek">Lower Greek</option>
+                    <option value="lower-latin">Lower Latin</option>
+                    <option value="lower-roman">Lower Roman</option>
+                    <option value="none">None</option>
+                    <option value="outside">Outside</option>
+                    <option value="square">Square</option>
+                    <option value="symbol">Symbol</option>
+                    <option value="upper-alpha">Upper Alpha</option>
+                    <option value="upper-latin">Upper Latin</option>
+                    <option value="upper-roman">Upper Roman</option>
+                    <option value="url">url</option>
+                </optgroup>
+                <optgroup label="Custom">
+                    <option value="alpha-modified">Alpha Modified</option>
+                    <option value="geometric_blocks">Geometric Blocks</option>
+                    <option value="Arrowheads">Arrow Heads</option>
+                    <option value="weather_icons">Weather Icons</option>
+                    <option value="chess_pieces" selected>Chess Pieces</option>
+                    <option value="right_angle_arrows">Right Angle Arrows</option>
+                    <option value="floral_symbols">Floral Symbols</option>
+                    <option value="playing_card_suits">Playing Card Suits</option>
+                    <option value="custom">Custom</option>
+                </optgroup>
+            </select>
+            <span class="urlf d_none">
+                <input type="text" id="url" name="url" placeholder="URL"> <input type="file" name="image" id="image"
+                    class="d_none"><input id="button" type="button" value="Swap">
+                <pre>
+                Tip
+                input loc.png
+                      durm.png
+            </pre>
+            </span>
+            <div class="custom d_none">
+                <h2>Custom Styling</h1>
+                <input type="text" name="system" id="system" placeholder="system">
+                <input type="text" name="symbol" id="symbol" placeholder="symbol">
+                <input type="text" name="prefix" id="prefix" placeholder="prefix">
+                <input type="text" name="suffix" id="suffix" placeholder="suffix">
+                <input type="text" name="pad" id="pad" placeholder="pad">
+                <input type="text" name="fallback" id="fallback" placeholder="fallback">
+                <input type="text" name="negative" id="negative" placeholder="negative">
+                <input type="text" name="speakas" id="speakas" placeholder="speakas">
+                <input type="text" name="additiveSymbols" id="additiveSymbols" placeholder="additiveSymbols">
+                <input type="text" name="range" id="range" placeholder="range">
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>
