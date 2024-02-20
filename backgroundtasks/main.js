@@ -110,7 +110,7 @@ if ("requestIdleCallback" in window) {
         const value = lengthText.value.trim();
 
         if (!validateNumber(value)) {
-            alert('Please enter a valid number greater than zero.');
+            alert('Please enter a valid number.');
             return;
         }
 

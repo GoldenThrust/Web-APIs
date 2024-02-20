@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Font Loading API</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <h1>CSS Font Loading API</h1>
+    <section contenteditable="true" spellcheck="false">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem ex ullam facere fugit repellendus placeat, porro, nostrum recusandae, cumque quos illo! Alias laudantium esse natus provident, quae vitae harum possimus?
+        Temporibus corrupti fuga suscipit sit vel aliquid labore? Placeat facilis quod quisquam beatae veniam repellat ratione explicabo deserunt, itaque, quis maiores. Non enim vero culpa laborum possimus perferendis asperiores itaque?
+        Eveniet iusto consequatur nemo exercitationem eaque dolorem rem eligendi ea ipsam, vel, voluptatum facere. Sed eos repudiandae qui laudantium a tempora ut, possimus nostrum ad totam fugiat quidem, saepe corrupti?
+        Enim aspernatur ipsum similique sapiente! Suscipit, voluptatibus aut nobis molestias reprehenderit vel, aperiam velit accusamus illum exercitationem odio excepturi modi fuga temporibus consequuntur praesentium numquam error tenetur, repellendus sapiente incidunt!
+        Deleniti cumque, eligendi libero ullam nihil quibusdam beatae asperiores sed, quo, amet quos dolorem adipisci commodi nulla? Quidem cumque minima eaque quas, voluptas sint quam! Veniam nihil nulla eaque excepturi!
+        Accusamus quae consequuntur accusantium qui nihil fuga itaque sapiente alias aliquam ut illum labore dolor, quisquam minima quaerat magni minus odit velit quod adipisci quasi temporibus quibusdam voluptatibus! Dolore, voluptas!
+        Aliquam quae accusamus earum exercitationem dolorem esse mollitia corporis! Voluptatum quidem deserunt ut, ipsum voluptatem delectus dicta fuga consequatur debitis, laborum quia repellendus id optio. Facere architecto ratione ullam laboriosam!
+        Velit ut quo harum enim, autem quia praesentium corrupti debitis nemo, repudiandae in ea alias voluptas minima omnis veniam sequi rerum. Praesentium velit laborum maxime tenetur dolore quas rerum voluptates.
+        Odit quod officia debitis praesentium commodi iusto enim perferendis. Alias mollitia incidunt temporibus quisquam iusto eaque sint numquam! Libero quis vitae incidunt amet sed dolorum ducimus dolores nostrum blanditiis exercitationem!
+        Numquam fuga sed autem laborum assumenda est nesciunt quibusdam? Aliquam nemo eveniet maxime vel, molestias obcaecati consequatur accusantium quod quos soluta? Quae in soluta culpa corporis error eius quod fuga.
+    </section>
+    <aside>
+        <h2>Add Font</h2>
+        <select name="root-manager" id="root-manager">
+            <option value="Default">Default</option>
+            <option value="Loaded">Loaded</option>
+            <option value="URL">URL</option>
+            <option value="Custom">Custom</option>
+        </select>
+    </aside>
+    <div class="default">
+        <button>Monospace</button>
+        <button>Time New Roman</button>
+        <button>Cursive</button>
+        <button>Fantasy</button>
+        <button>San-Serif</button>
+        <button>Courier</button>
+        <button>Impact</button>
+    </div>
+    
+    <div class="loaded d-none">
+        <button>Pixelify Sans</button>
+        <button>Pacifico</button>
+        <button>Bebas Neue</button>
+        <button>Black Ops One</button>
+        <button>Amantic Sc</button>
+    </div>
+
+    <div class="url d-none">
+            <input type="file" accept=".woff, .otf, .ttf" id="url">
+    </div>
+
+    <div class="custom d-none">
+        <input type="text" placeholder="family">
+        <select name="" id="">
+            <option value="auto" disabled>Display</option>
+            <option value="auto" selected>Auto</option>
+            <option value="block">block</option>
+            <option value="fallback">fallback</option>
+            <option value="optional">optional</option>
+            <option value="swap">swap</option>
+        </select>
+        <input type="text" placeholder="weight">
+        <input type="text" placeholder="stretch">
+        <input type="text" placeholder="style">
+        <input type="text" placeholder="ascent override">
+        <input type="text" placeholder="descent override">
+        <input type="text" placeholder="line gap override">
+        <input type="text" placeholder="feature setting">
+        <input type="text" placeholder="unicode range">
+        <pre>
+            Tips:
+                if you want to modify your font
+                write <b><em>'myFont'</em></b> in the family section
+        </pre>
+    </div>
+</body>
+</html>

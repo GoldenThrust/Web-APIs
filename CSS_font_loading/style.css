@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'Pixelify Sans';
+    src: url('font/PixelifySans-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Pacifico';
+    src: url('font/Pacifico-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('font/BebasNeue-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Black Ops One';
+    src: url('font/BlackOpsOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Amantic Sc';
+    src: url('font/AmaticSC-Regular.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*::selection {
+    color: salmon;
+    background-color: brown;
+}
+
+body {
+    background-color: rgb(19, 4, 4);
+    color: aliceblue;
+}
+
+h1, h2 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    margin: 30px;
+}
+
+section {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: auto;
+    width: 80%;
+    border: 2px solid white;
+    padding: 50px;
+    text-align: justify;
+    animation: border-dance 5s ease-in-out infinite;
+    border-radius: 20px 0 0 0;
+}
+
+@keyframes border-dance {
+    0% {
+        border-radius: 20px 0 0 0;
+    }
+
+    25% {
+        border-radius: 0 20px 0 0;
+    }
+    50% {
+        border-radius: 0 0 20px 0;
+    }
+    75% {
+        border-radius: 0 0 0 20px;
+    }
+}
+
+aside, div, .url {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div {
+    flex-direction: row;
+    margin: 20px auto;
+    width: 80%;
+}
+
+button {
+    background-color: brown;
+    color: salmon;
+    font-weight: bolder;
+    padding: 5px;
+    cursor: pointer;
+}
+
+select, input {
+    background-color: black;
+    color: aliceblue;
+}
+
+.url :is(input, button) {
+    width: 20%;
+    margin: 2px;
+    padding: 3px;
+}
+
+input::placeholder, .custom select option:disabled {
+    color: navajowhite;
+}
+
+.custom {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    overflow: hidden;
+}
+
+.custom :is(input,select) {
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+.d-none {
+    display: none;
+}
+input[type=file] {
+    background-color: brown;
+}
