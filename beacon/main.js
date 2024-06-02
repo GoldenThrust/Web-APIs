@@ -13,7 +13,7 @@ function sendBeaconReport(data) {
     form.append("log", JSON.stringify(data));
 
     // Send the Beacon report with the data to the specified URL
-    navigator.sendBeacon('http://localhost/beacon/', form);
+    navigator.sendBeacon('https://localhost/beacon/', form);
 
     // Update the <p> element with logged data details
     p.innerText = "Logged data : \r\n\r\n";
