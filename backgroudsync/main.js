@@ -1,81 +1,96 @@
-import { replaceStringInUrl, getMessageFromStorage, removeMessageFromStorage, storeMessageLocally, uuid } from '../utils.js'
+import { replaceStringInUrl, uuid } from "../utils.js";
 
-const p = document.querySelector('p')
-const saveData = document.getElementById('saveData');
-const previewData = document.getElementById('previewData');
-const saveDataButton = document.getElementById('saveDataButton');
+const p = document.querySelector("p");
+const saveData = document.getElementById("saveData");
+const previewData = document.getElementById("previewData");
+const saveDataButton = document.getElementById("saveDataButton");
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register('/sw.js').then((registration) => {
-    console.log("Serviceworker registered with scoped:", registration.scope)
-  }).catch(error => {
-    console.log("Serviceworker registration failed:", error)
-  })
+  navigator.serviceWorker
+    .register("/backgroudsync/sw.js", { scope: "/backgroudsync/" })
+    .then(function (registration) {
+      console.log(
+        "ServiceWorker registration successful with scope: ",
+        registration.scope
+      );
+    })
+    .catch(function (error) {
+      console.log("ServiceWorker registration failed: ", error);
+    });
+
+  self.addEventListener("install", (event) => {
+    console.log("Service Worker installing.");
+    self.skipWaiting();
+  });
+
+  self.addEventListener("activate", (event) => {
+    console.log("Service Worker activating.");
+  });
 }
 
-saveDataButton.addEventListener('click', () => {
+export function storeMessageLocally(message) {
+  const request = indexedDB.open("messagesDB", 1);
+
+  request.onupgradeneeded = (event) => {
+    const db = event.target.result;
+    db.createObjectStore("messages", { keyPath: "id" });
+  };
+
+  request.onsuccess = (event) => {
+    const db = event.target.result;
+    const transaction = db.transaction("messages", "readwrite");
+    const store = transaction.objectStore("messages");
+    store.put(message);
+    console.log("Message stored locally:", message);
+  };
+}
+
+saveDataButton.addEventListener("click", () => {
   const message = {
-    id: uuid,
+    id: uuid(),
     content: saveData.value,
-    timestamp: Date.now()
-  }
+    timestamp: Date.now(),
+  };
 
   storeMessageLocally(message);
 
-  navigator.serviceWorker.ready.then(function (registration) {
-    return registration.sync.register('message');
-  }).then(() => {
-    console.log('Sync registered');
-  }).catch(error => {
-    console.error('Sync registration failed:', error);
-  });
-})
+  navigator.serviceWorker.ready
+    .then(function (registration) {
+      return registration.sync.register("message");
+    })
+    .then(() => {
+      console.log("Sync registered");
+    })
+    .catch((error) => {
+      console.error("Sync registration failed:", error);
+    });
+});
 
-previewData.addEventListener('click', async () => {
+previewData.addEventListener("click", async () => {
   p.innerText = await getMessage();
-})
+});
 
 function getMessage() {
-  return new Promise(
-    function (resolve, reject) {
-      fetch(replaceStringInUrl(window.location.origin, "5502", "8000") + '/getdata.php', {
-        method: 'GET',
+  return new Promise(function (resolve, reject) {
+    fetch(
+      replaceStringInUrl(window.location.origin, "5502", "8000") +
+        "/getdata.php",
+      {
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(function (response) {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then(function (response) {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
-      }).then(function (data) {
-        resolve(data);
       })
-    })
-}
-
-export function sendMessage() {
-  return new Promise(function (resolve, reject) {
-    getMessageFromStorage().then(function (message) {
-      fetch(replaceStringInUrl(window.location.origin, "5502", "8000"), {
-        method: 'POST',
-        body: JSON.stringify({ record: message }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(function (response) {
-        if (response.ok) {
-          removeMessageFromStorage(message.id);
-          console.log(response.body());
-          alert(response.body())
-          resolve();
-        } else {
-          reject();
-        }
-      }).catch(function (error) {
-        reject();
+      .then(function (data) {
+        resolve(data);
       });
-    });
   });
 }

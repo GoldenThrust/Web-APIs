@@ -6,3 +6,5 @@ Contributions are welcome! If you have improvements or features you'd like to ad
 
 When contributing to this repository, please first discuss the changes you wish to make by creating an issue. This helps ensure that your contribution aligns with the goals of the project and avoids duplication of efforts.
 ```
+
+Usage
