@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Badge API</h1>
-    <button onclick="sendLog()">Send Log Data</button>
 
-    <script src="main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background Sync</title>
+</head>
+
+<body>
+  <h1>Background Sync</h1>
+
+  <fieldset>
+    <legend>Log Data</legend>
+
+    <label for="saveData">
+      <input type="text" name="saveData" id="saveData" />
+    </label>
+    <button id="saveDataButton">Save Data</button>
+  </fieldset>
+
+  <p></p>
+  <button id="previewData">Preview</button>
+  <script src="main.js" type="module"></script>
+</body>
+
 </html>

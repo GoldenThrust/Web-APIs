@@ -1,90 +1,81 @@
-navigator.serviceWorker.ready
-  .then((registration) => {
-    registration.sync.register("smessage");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+import { replaceStringInUrl, getMessageFromStorage, removeMessageFromStorage, storeMessageLocally, uuid } from '../utils.js'
 
-navigator.serviceWorker.ready
-  .then((registration) => {
-    registration.sync
-      .getTags()
-      .then((tags) => {
-        if (tags.includes("smessage")) {
-          // Corrected tag name
-          console.log("Message sync already requested");
+const p = document.querySelector('p')
+const saveData = document.getElementById('saveData');
+const previewData = document.getElementById('previewData');
+const saveDataButton = document.getElementById('saveDataButton');
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register('/sw.js').then((registration) => {
+    console.log("Serviceworker registered with scoped:", registration.scope)
+  }).catch(error => {
+    console.log("Serviceworker registration failed:", error)
+  })
+}
+
+saveDataButton.addEventListener('click', () => {
+  const message = {
+    id: uuid,
+    content: saveData.value,
+    timestamp: Date.now()
+  }
+
+  storeMessageLocally(message);
+
+  navigator.serviceWorker.ready.then(function (registration) {
+    return registration.sync.register('message');
+  }).then(() => {
+    console.log('Sync registered');
+  }).catch(error => {
+    console.error('Sync registration failed:', error);
+  });
+})
+
+previewData.addEventListener('click', async () => {
+  p.innerText = await getMessage();
+})
+
+function getMessage() {
+  return new Promise(
+    function (resolve, reject) {
+      fetch(replaceStringInUrl(window.location.origin, "5502", "8000") + '/getdata.php', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         }
+      }).then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      }).then(function (data) {
+        resolve(data);
       })
-      .catch((error) => {
-        console.error(error);
-      });
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    })
+}
 
-function sendBeaconReport(data) {
-  // Get the <p> element for displaying log information
-  let p = document.querySelector("p");
-
-  // Create a FormData object and append data as a JSON string
-  let form = new FormData();
-  form.append("log", JSON.stringify(data));
-
-  // Send the Beacon report with the data to the specified URL
-  navigator.sendBeacon("http://localhost/beacon/", form);
-
-  // Update the <p> element with logged data details
-  p.innerText = "Logged data : \r\n\r\n";
-  for (keys in data) {
-    if (keys == "brands") {
-      p.innerText += keys + " = \n";
-      for (let i = 0; i < data[keys].length; i++) {
-        for (key in data[keys][i]) {
-          p.innerText += key + " : " + data[keys][i][key] + "\n";
+export function sendMessage() {
+  return new Promise(function (resolve, reject) {
+    getMessageFromStorage().then(function (message) {
+      fetch(replaceStringInUrl(window.location.origin, "5502", "8000"), {
+        method: 'POST',
+        body: JSON.stringify({ record: message }),
+        headers: {
+          'Content-Type': 'application/json'
         }
-      }
-    } else {
-      p.innerText += keys + " = " + data[keys] + "\n";
-    }
-  }
-
-  // Set a random background color
-  document.documentElement.style.backgroundColor =
-    "rgb(" + randomColor() + "," + randomColor() + "," + randomColor() + ")";
-
-  // Set a random text color
-  document.documentElement.style.color =
-    "rgb(" + randomColor() + "," + randomColor() + "," + randomColor() + ")";
+      }).then(function (response) {
+        if (response.ok) {
+          removeMessageFromStorage(message.id);
+          console.log(response.body());
+          alert(response.body())
+          resolve();
+        } else {
+          reject();
+        }
+      }).catch(function (error) {
+        reject();
+      });
+    });
+  });
 }
-
-// Function to log user activity
-function logUserData() {
-  let brands = [];
-
-  // Iterate through user agent brands and push to the 'brands' array
-  for (let i = 0; i < navigator.userAgentData.brands.length; i++) {
-    brands.push(navigator.userAgentData.brands[i]);
-  }
-
-  // Create an activity data object
-  const activityData = {
-    timestamp: new Date().toISOString(),
-    eventType: navigator.onLine ? "leavePage" : "goOffline",
-    userAgent: navigator.userAgent,
-    mobile: navigator.userAgentData.mobile,
-    platform: navigator.userAgentData.platform,
-    url: window.location.href,
-    brands: brands,
-  };
-
-  // Send the activity data using the sendBeaconReport function
-  sendBeaconReport(activityData);
-}
-
-self.addEventListener("sync", (e) => {
-  if (e.tag === "smessage") {
-    e.waitUntil(logUserData());
-  }
-});

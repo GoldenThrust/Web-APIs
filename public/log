@@ -152,5 +152,137 @@
                 "version": "115"
             }
         ]
+    },
+    {
+        "timestamp": "2024-06-10T16:35:49.964Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+        "mobile": true,
+        "platform": "Android",
+        "url": "https://5502-idx-web-browser-apis-1717864352756.cluster-wxkvpdxct5e4sxx4nbgdioeb46.cloudworkstations.dev/beacon/",
+        "brands": [
+            {
+                "brand": "Chromium",
+                "version": "124"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "124"
+            },
+            {
+                "brand": "Not-A.Brand",
+                "version": "99"
+            }
+        ]
+    },
+    {
+        "timestamp": "2024-06-10T16:36:27.421Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+        "mobile": true,
+        "platform": "Android",
+        "url": "https://5502-idx-web-browser-apis-1717864352756.cluster-wxkvpdxct5e4sxx4nbgdioeb46.cloudworkstations.dev/beacon/",
+        "brands": [
+            {
+                "brand": "Chromium",
+                "version": "124"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "124"
+            },
+            {
+                "brand": "Not-A.Brand",
+                "version": "99"
+            }
+        ]
+    },
+    {
+        "timestamp": "2024-06-10T16:36:31.372Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+        "mobile": true,
+        "platform": "Android",
+        "url": "https://5502-idx-web-browser-apis-1717864352756.cluster-wxkvpdxct5e4sxx4nbgdioeb46.cloudworkstations.dev/beacon/",
+        "brands": [
+            {
+                "brand": "Chromium",
+                "version": "124"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "124"
+            },
+            {
+                "brand": "Not-A.Brand",
+                "version": "99"
+            }
+        ]
+    },
+    {
+        "timestamp": "2024-06-10T16:42:52.362Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+        "mobile": true,
+        "platform": "Android",
+        "url": "https://5502-idx-web-browser-apis-1717864352756.cluster-wxkvpdxct5e4sxx4nbgdioeb46.cloudworkstations.dev/beacon/",
+        "brands": [
+            {
+                "brand": "Chromium",
+                "version": "124"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "124"
+            },
+            {
+                "brand": "Not-A.Brand",
+                "version": "99"
+            }
+        ]
+    },
+    {
+        "timestamp": "2024-06-10T21:17:20.889Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+        "mobile": true,
+        "platform": "Android",
+        "url": "https://5502-idx-web-browser-apis-1717864352756.cluster-wxkvpdxct5e4sxx4nbgdioeb46.cloudworkstations.dev/beacon/",
+        "brands": [
+            {
+                "brand": "Chromium",
+                "version": "124"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "124"
+            },
+            {
+                "brand": "Not-A.Brand",
+                "version": "99"
+            }
+        ]
+    },
+    {
+        "timestamp": "2024-06-10T21:17:20.912Z",
+        "eventType": "leavePage",
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+        "mobile": true,
+        "platform": "Android",
+        "url": "https://5502-idx-web-browser-apis-1717864352756.cluster-wxkvpdxct5e4sxx4nbgdioeb46.cloudworkstations.dev/beacon/",
+        "brands": [
+            {
+                "brand": "Chromium",
+                "version": "124"
+            },
+            {
+                "brand": "Google Chrome",
+                "version": "124"
+            },
+            {
+                "brand": "Not-A.Brand",
+                "version": "99"
+            }
+        ]
     }
 ]

@@ -1,7 +1,9 @@
+import { replaceStringInUrl } from '../utils.js'
+
 // Function to generate a random color component (0 to 255)
 function randomColor() {
     return Math.floor(Math.random() * 255);
-}
+}  
 
 // Function to send a Beacon report with data
 function sendBeaconReport(data) {
@@ -13,7 +15,7 @@ function sendBeaconReport(data) {
     form.append("log", JSON.stringify(data));
 
     // Send the Beacon report with the data to the specified URL
-    navigator.sendBeacon('https://localhost/beacon/', form);
+    navigator.sendBeacon(replaceStringInUrl(window.location.origin, "5502", "8000"), form);
 
     // Update the <p> element with logged data details
     p.innerText = "Logged data : \r\n\r\n";
@@ -63,7 +65,7 @@ function logUserActivity() {
     sendBeaconReport(activityData);
 }
 
-// Attach the logUserActivity function to the beforeunload event
+// Attach the logUserActivity function to the beforeunload event 
 window.addEventListener('beforeunload', logUserActivity);
 window.addEventListener("blur", logUserActivity);
 
@@ -71,4 +73,4 @@ window.addEventListener("blur", logUserActivity);
 window.addEventListener('offline', logUserActivity);
 
 // Log a message to indicate that user activity logging is in progress
-console.log("logging user activity");
+console.log("logging user activity", location);
