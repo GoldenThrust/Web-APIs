@@ -1,23 +1,22 @@
-/* For Chrome, Safari, and Opera */
 ::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #514040; /* Color of the track */
+  background: #514040;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #190d23; /* Color of the thumb */
-  border-radius: 6px; /* Rounded corners of the thumb */
+  background-color: #190d23;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Color of the thumb on hover */
+  background-color: #555;
 }
 
 * {
-    scrollbar-width: 1px;
+    scrollbar-width: 5px;
     scrollbar-color: #491d1d;
 }
 

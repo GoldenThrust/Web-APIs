@@ -31,21 +31,6 @@ The Serial Code Generator is built with the following technologies:
 - CSS3
 - JavaScript
 
-## Installation
-
-To install the Serial Code Generator locally, follow these steps:
-
-1. Clone the repository:
-
-    ```shell
-    git clone https://github.com/your-username/serial-code-generator.git
-    ```
-2. Open the project directory:
-    ```shell
-    cd serial-code-generator
-    ```
-3. Open the index.html file in your preferred web browser.
-
 ## Contributing
 Contributions to the Serial Code Generator are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 

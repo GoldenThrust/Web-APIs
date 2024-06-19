@@ -17,15 +17,4 @@ This repository contains code examples for logging user activity using HTML, CSS
 
 3. The `style.css` stylesheet provides basic styling, including text shadows and center-aligned headers.
 
-4. The `logger.php` PHP file contains server-side logic for managing log data. It defines functions to read and write log data, and processes incoming POST requests.
-
-## Getting Started
-
-1. Clone this repository to your local machine.
-
-2. Set up a local web server environment (e.g., XAMPP, WAMP, or similar).
-
-3. Place the repository files in your web server's document root directory.
-
-4. Access the `index.html` file through your web browser.
-
+4. The PHP file contains server-side logic for managing log data. It defines functions to read and write log data,
