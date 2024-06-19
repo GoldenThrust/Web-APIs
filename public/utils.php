@@ -9,7 +9,7 @@ function writetoBuffer(string $filename, string $content): void
 function appendtoBuffer(string $filename, string $content): void
 {
     $buf = fopen($filename, "a");
-    fwrite($buf, $content);
+    fwrite($buf, $content . PHP_EOL);
     fclose($buf);
 }
 

@@ -1,5 +1,4 @@
 export function replaceStringInUrl(url, oldString, newString) {
-    // Replace all occurrences of oldString with newString
     const modifiedUrl = url.replace(new RegExp(oldString, 'g'), newString);
     return modifiedUrl;
 } 

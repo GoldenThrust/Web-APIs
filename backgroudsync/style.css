@@ -1,0 +1,44 @@
+* {
+    scrollbar-width: 10px;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body {
+    color: antiquewhite;
+    background-color: rgb(12, 1, 4);
+}
+
+textarea {
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+input {
+    width: 50%;
+    height: 40px;
+    font: ultra-condensed small-caps bolder 1.2em "Fira Sans", sans-serif;
+    margin-bottom: 20px;
+}
+p {
+    max-height: 40ch;
+    overflow-y: auto;
+}

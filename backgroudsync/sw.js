@@ -14,6 +14,7 @@ function getMessageFromStorage() {
       const getAllRequest = store.getAll();
 
       getAllRequest.onsuccess = (event) => {
+        console.log("Messages retrieved");
         resolve(event.target.result);
       };
 
@@ -41,19 +42,13 @@ function sendMessage() {
 
   return new Promise(function (resolve, reject) {
     getMessageFromStorage().then((messages) => {
-      const url = replaceStringInUrl(window.location.origin, "5500", "8000");
+      const url = replaceStringInUrl(location.origin, "5500", "8000");
 
-      console.log("Sending message", url);
-
-      const formdata = new FormData();
-
-      formdata.append("record", JSON.stringify(messages));
-
-      navigator.sendBeacon(url, formdata);
+      console.log("Sending message to", url);
 
       fetch(url, {
         method: "POST",
-        body: formdata,
+        body: JSON.stringify({ record: messages }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -69,7 +64,7 @@ function sendMessage() {
             reject();
           }
         })
-        .catch(function (error) {
+        .catch((error) => {
           throw new Error(error);
           reject(error);
         });

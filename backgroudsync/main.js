@@ -1,9 +1,8 @@
 import { replaceStringInUrl, uuid } from "../utils.js";
 
 const p = document.querySelector("p");
-const saveData = document.getElementById("saveData");
-const previewData = document.getElementById("previewData");
-const saveDataButton = document.getElementById("saveDataButton");
+const form = document.forms[0];
+const showRecord = document.getElementById("showRecord");
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
@@ -45,28 +44,34 @@ export function storeMessageLocally(message) {
   };
 }
 
-saveDataButton.addEventListener("click", () => {
-  const message = {
-    id: uuid(),
-    content: saveData.value,
-    timestamp: Date.now(),
-  };
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-  storeMessageLocally(message);
+  if (form[0].value !== "") {
+    const message = {
+      id: uuid(),
+      content: form[0].value,
+      timestamp: Date.now(),
+    };
 
-  navigator.serviceWorker.ready
-    .then(function (registration) {
-      return registration.sync.register("message");
-    })
-    .then(() => {
-      console.log("Sync registered");
-    })
-    .catch((error) => {
-      console.error("Sync registration failed:", error);
-    });
+    form[0].value = "";
+
+    storeMessageLocally(message);
+
+    navigator.serviceWorker.ready
+      .then(function (registration) {
+        return registration.sync.register("message");
+      })
+      .then(() => {
+        console.log("Sync registered");
+      })
+      .catch((error) => {
+        console.error("Sync registration failed:", error);
+      });
+  }
 });
 
-previewData.addEventListener("click", async () => {
+showRecord.addEventListener("click", async () => {
   const message = await getMessage();
   p.innerText = message.message;
 });
@@ -75,7 +80,7 @@ function getMessage() {
   return new Promise(function (resolve, reject) {
     const url =
       replaceStringInUrl(window.location.origin, "5500", "8000") +
-      "/getdata.php";
+      "/getrecord.php";
     console.log(url);
 
     fetch(url, {
