@@ -67,21 +67,23 @@ saveDataButton.addEventListener("click", () => {
 });
 
 previewData.addEventListener("click", async () => {
-  p.innerText = await getMessage();
+  const message = await getMessage();
+  p.innerText = message.message;
 });
 
 function getMessage() {
   return new Promise(function (resolve, reject) {
-    fetch(
-      replaceStringInUrl(window.location.origin, "5502", "8000") +
-        "/getdata.php",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    const url =
+      replaceStringInUrl(window.location.origin, "5500", "8000") +
+      "/getdata.php";
+    console.log(url);
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then(function (response) {
         if (response.ok) {
           return response.json();
