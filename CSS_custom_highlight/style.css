@@ -5,3 +5,25 @@
     height: 30px;
     width: 30ch;
 }
+
+section {
+  text-shadow:
+                1px 1px 0 #e0e0e0,
+                2px 2px 0 #d0d0d0,
+                3px 3px 0 #c0c0c0,
+                4px 4px 0 #b0b0b0,
+                5px 5px 0 #a0a0a0,
+                5.5px 5.5px 0 #909090,
+              6px 6px 0 #808080,
+                6.3px 6.3px 0 #707070,
+                6.5px 6.5px 0 #606060,
+                6.7px 6.7px 0 #505050,
+                6.7px 6.7px 2px #000;
+}
+
+::highlight(find) {
+  unset: all;
+  /* background-color: black; */
+  /* color: aliceblue */
+  color: transparent;
+}
