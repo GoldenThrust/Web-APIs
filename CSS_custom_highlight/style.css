@@ -22,8 +22,7 @@ section {
 }
 
 ::highlight(find) {
-  unset: all;
-  /* background-color: black; */
-  /* color: aliceblue */
+  /* background-color: black;
+  color: aliceblue */
   color: transparent;
 }
