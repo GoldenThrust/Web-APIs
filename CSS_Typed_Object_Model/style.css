@@ -22,6 +22,7 @@ body {
     closest-side at 40% 45%,
     rgb(145, 145, 145),
     rgba(35, 35, 35, 0.9)
+    rgb(130, 69, 36)
   );
   transition: all 0.4s cubic-bezier(0.2, 0.2, 0.745, 0.715);
 }
